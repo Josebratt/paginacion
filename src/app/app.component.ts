@@ -37,13 +37,12 @@ export class AppComponent {
 
   cargar(){
     this.loading = true;  
-    console.log('1',this.lastPageLoaded);
     this.postService.getPosts(this.lastPageLoaded).pipe(
                       finalize(() => this.loading = false)
     )
     .subscribe(
       data => { 
-        this.lastPageLoaded = data[data.length -1 ]
+        this.lastPageLoaded = data[data.length -1 ];
         this.posts = data; console.log(this.posts); 
       }
     )
