@@ -13,8 +13,6 @@ export class PostService {
   constructor( private afs: AngularFirestore) {}
 
   getPosts(pageNumber: any): Observable<Post[]>{    
-
-    console.log('2',pageNumber);
     return this.getPostCollection(pageNumber).get().pipe(
       map( changes => convertSnaps<Post>(changes)
         // {
