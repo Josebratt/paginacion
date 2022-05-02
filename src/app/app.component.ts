@@ -12,41 +12,13 @@ import { PostService } from './post.service';
 })
 export class AppComponent {
 
-  title = 'paginacion';
-
-  loading = false;
-
   posts?: Post[];
 
-  lastPageLoaded: any;
-  querySnapshot:any;
+  loading: boolean = true;
 
   constructor(private postService: PostService){
-      this.loading = true;
-      this.postService.getPosts(this.lastPageLoaded).pipe(
-        finalize(() => this.loading = false)
-      )
-      .subscribe(
-        data => { 
-          this.lastPageLoaded = data[data.length -1 ]
-          this.posts = data; console.log(this.posts)}
-      )
-      
-      
-  }
-
-  cargar(){
-    this.loading = true;  
-    this.postService.getPosts(this.lastPageLoaded).pipe(
-                      finalize(() => this.loading = false)
-    )
-    .subscribe(
-      data => { 
-        this.lastPageLoaded = data[data.length -1 ];
-        this.posts = data; console.log(this.posts); 
-      }
-    )
-    
+    this.postService.getPost();
+    console.log(this);
     
   }
 }
